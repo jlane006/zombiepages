@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(0,0,0,0.1);
+}
+
+/* styling paper
+#paper {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  margin: 20px auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #888;
+}*/
+
+/* styling red vertical line
+#paper::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  background-color: rgba(255,0,0,0.6);
+  opacity: 0.5;
+}*/
+
+/* styling blue horizontal lines
+#pattern {
+  height: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+}*/
+
+/* styling text content */
+.content {
+  display: flex;
+  padding-top: 28px;
+  padding-left: 56px;
+  padding-right: 16px;
+  line-height: 25px;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 12px;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+}
+
+.content .avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.content .text {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
+.Jace {
+  background: #b5b69c;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-right: 1rem;
+}
+
+.Andrew {
+  background: #7d7e73;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-right: 1rem;
+}
+
+.Crystal {
+  background: #876969;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-right: 1rem;
+}
+
+.Sandi {
+  background: #6d4141;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-right: 1rem;
+}
+
+.newNote {
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+  left: 40%;
+}
+
+#textEnter {
+  position: fixed;
+  width: 80px;
+  bottom: 12px;
+  right: 5%;
+  left: 75%;
+}
+
+[v-cloak] {
+  display: none;
+}
