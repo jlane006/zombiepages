@@ -25,7 +25,7 @@ const vue = new Vue({
         password: this.password
       }
 
-      axios.post('https://notes.boxybird.com/wp-json/simple-jwt-authentication/v1/token', postData).then(({ data }) => {
+      axios.post('https://notes.andrewrhyand.com/wp-json/simple-jwt-authentication/v1/token', postData).then(({ data }) => {
         this.user = data
         this.storeUser(data)
         
@@ -42,7 +42,7 @@ const vue = new Vue({
 
       // If user TRUE try to validate token with API
       if (user) {
-        axios.post('https://notes.boxybird.com/wp-json/simple-jwt-authentication/v1/token/refresh', {}, {
+        axios.post('https://notes.andrewrhyand.com/wp-json/simple-jwt-authentication/v1/token/refresh', {}, {
           headers: {
             Authorization: `Bearer ${user.token}`
           }
@@ -62,7 +62,7 @@ const vue = new Vue({
 
     //Add code to prevent empty note from being submitted
     saveNote() {
-      axios.post('https://notes.boxybird.com/wp-json/bb-notes/v1/notes', {
+      axios.post('https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes', {
         content: this.newNote,
         city: this.location,
         latitude: this.lat,
@@ -91,7 +91,7 @@ const vue = new Vue({
 
     fetchNotes() {
       // Testing API call
-      axios.get('https://notes.boxybird.com/wp-json/bb-notes/v1/notes', {
+      axios.get('https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes', {
         headers: {
           Authorization: `Bearer ${this.user.token}`
         }
