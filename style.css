@@ -92,12 +92,12 @@ body {
   padding-right: 1rem;
 }
 
-.newNote {
+/*.newNote {
   position: fixed;
   bottom: 0;
   right: 5%;
   left: 40%;
-}
+}*/
 
 #textEnter {
   position: fixed;
