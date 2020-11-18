@@ -16,6 +16,7 @@ const vue = new Vue({
   
   created() {
     this.getUser()
+    this.getLocation()
   },
 
   methods: {
@@ -28,13 +29,29 @@ const vue = new Vue({
       axios.post('https://notes.andrewrhyand.com/wp-json/simple-jwt-authentication/v1/token', postData).then(({ data }) => {
         this.user = data
         this.storeUser(data)
-        
         this.fetchNotes()
       })
     },
     
     storeUser(data) {
       localStorage.setItem('user', JSON.stringify(data))
+    },
+
+    getLocation() {
+      if(!("geolocation" in navigator)) {
+        window.alert("Geolocation is not available")
+        return
+      }
+
+      //get location
+      navigator.geolocation.getCurrentPosition(pos => {
+        //console.log(pos);
+        this.lat = pos.coords.latitude
+        this.lng = pos.coords.longitude
+        //console.log(this.lat,this.lng);
+      }, err => {
+        window.alert("Don't be a dick. Give us your location")
+      })
     },
 
     getUser() {
