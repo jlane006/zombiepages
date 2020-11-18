@@ -43,17 +43,6 @@ const vue = new Vue({
         return
       }
 
-      //get location
-      navigator.geolocation.getCurrentPosition(pos => {
-        //console.log(pos);
-        this.lat = pos.coords.latitude
-        this.lng = pos.coords.longitude
-        //console.log(this.lat,this.lng);
-      }, err => {
-        window.alert("Don't be a dick. Give us your location")
-      })
-    },
-
     getUser() {
       let user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
 
