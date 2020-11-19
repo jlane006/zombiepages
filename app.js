@@ -45,10 +45,20 @@ const vue = new Vue({
 
       //get location
       navigator.geolocation.getCurrentPosition(pos => {
-        //console.log(pos);
+      
         this.lat = pos.coords.latitude
         this.lng = pos.coords.longitude
-        //console.log(this.lat,this.lng);
+
+        const api = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&appid=3d394949dd1c9f31a92e7b8140a23680&units=imperial`
+
+          fetch(api)
+            .then(response => {
+              return response.json()
+            })
+            .then(data => {
+              const {name} = data
+              this.location = name;
+            });
       }, err => {
         window.alert("Don't be a dick. Give us your location")
       })
