@@ -48,17 +48,7 @@ const vue = new Vue({
       
         this.lat = pos.coords.latitude
         this.lng = pos.coords.longitude
-
-        const api = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&appid=3d394949dd1c9f31a92e7b8140a23680&units=imperial`
-
-          fetch(api)
-            .then(response => {
-              return response.json()
-            })
-            .then(data => {
-              const {name} = data
-              this.location = name;
-            });
+        console.log(this.lat, this.lng);
       }, err => {
         window.alert("Don't be a dick. Give us your location")
       })
