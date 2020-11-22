@@ -16,7 +16,14 @@ const vue = new Vue({
   
   created() {
     this.getUser()
-    this.getLocation()
+  },
+
+  updated() {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    })
   },
 
   methods: {
@@ -48,7 +55,18 @@ const vue = new Vue({
       
         this.lat = pos.coords.latitude
         this.lng = pos.coords.longitude
-        console.log(this.lat, this.lng);
+
+        const api = `https://api.openweathermap.org/data/2.5/weather?lat=${this.lat}&lon=${this.lng}&appid=${this.user.open_weather_api_key}&units=imperial`
+
+          fetch(api)
+            .then(response => {
+              return response.json()
+            })
+            .then(data => {
+              // const {name} = data
+              this.location = data;
+            });
+
       }, err => {
         window.alert("Don't be a dick. Give us your location")
       })
@@ -68,6 +86,7 @@ const vue = new Vue({
           this.user = data
           this.storeUser(data) 
           this.fetchNotes()
+          this.getLocation()
         })
         .catch((error) => {
           localStorage.removeItem('user')
@@ -81,7 +100,7 @@ const vue = new Vue({
     saveNote() {
       axios.post('https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes', {
         content: this.newNote,
-        city: this.location,
+        location: this.location,
         latitude: this.lat,
         longitude: this.lng
       },
@@ -93,11 +112,11 @@ const vue = new Vue({
       .then(({ data }) => {
         this.fetchNotes()
         this.newNote = ''
-        window.scrollTo({
-          left: 0,
-          top: document.body.scrollHeight,
-          behavior: 'smooth'
-        })
+        // window.scrollTo({
+        //   left: 0,
+        //   top: document.body.scrollHeight,
+        //   behavior: 'smooth'
+        // })
       })
       .catch((error) => {
         // Handle the error
