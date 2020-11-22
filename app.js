@@ -5,7 +5,7 @@ const vue = new Vue({
     return {
       notes: [],
       newNote: '',
-      location: 'Albuquerque, NM',
+      location: null,
       lat: 45.3343245,
       lng: -302.3534246,
       user: null,
