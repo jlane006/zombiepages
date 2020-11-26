@@ -47,7 +47,7 @@
             <div id="paper">
               <div id="pattern" class="pb-20">
                 <div class="content" v-for="note in notes" :key="note.id">
-                  <img class="avatar" :src="`https://avatars.dicebear.com/api/human/${note.user.id}.svg`" alt="avatar" />
+                  <img class="avatar" :src="`${note.user.name}.svg`" alt="avatar" />
                   <div class="text" :class="[{staticClass: true}, note.user.name]">
                     {{ note.user.name }} - {{ note.location.name }} - {{ note.timestamp }}
                     <br/>{{ note.content }}
