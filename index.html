@@ -48,16 +48,15 @@
             <main class="bg-gray-800 flex items-center justify-center min-h-screen pb-12">
               <div class="text-white w-full max-w-md">
                 <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id">
-                  <header class="relative">
-                    
-                    <div class="flex items-baseline place-content-center space-x-2 w-full">
+                  <header>
+                    <div class="flex items-baseline leading-none place-content-center space-x-2 w-full">
                       <h3>{{ note.user.name }}</h3>
                       <span class="tracking-tight text-gray-200 text-xs">{{ note.timestamp }}</span>
                     </div>
                   </header>
-                  <div class="flex h-auto">
-                    <img class="relative bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded transform -translate-x-1/2 -translate-y-1/2 w-16" :src="`${note.user.name}.svg`" alt="avatar" />
-                    <p>{{ note.content }}</p>
+                  <div class="flex relative" style="min-height: 3rem;">
+                    <img class="absolute bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded transform -translate-x-1/2 -translate-y-1/2 w-16" :src="`${note.user.name}.svg`" alt="avatar" />
+                    <p class="ml-12">{{ note.content }}</p>
                   </div>
                   <div class="border-t-4 border-gray-400">
                     <div class="flex items-center justify-between mt-2">
