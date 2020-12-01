@@ -151,7 +151,7 @@ const vue = new Vue({
 
     feedBrain(noteId) {
       //Add "likes" to notes
-       axios.post(`https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes/feedbrain/${noteId}`, null,
+       axios.post(`https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes/${noteId}/feedbrain`, null,
        {
          headers: {
            Authorization: `Bearer ${this.user.token}`
