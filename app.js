@@ -18,12 +18,24 @@ const vue = new Vue({
     this.getUser()
   },
 
-  updated() {
-    window.scrollTo({
-      left: 0,
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    })
+  // updated() {
+  //   window.scrollTo({
+  //     left: 0,
+  //     top: document.body.scrollHeight,
+  //     behavior: 'smooth'
+  //   })
+  // },
+
+  watch: {
+    notes() {
+      setTimeout(() => {
+        window.scrollTo({
+          left: 0,
+          top: document.body.scrollHeight,
+          behavior: 'smooth'
+        })
+      }, 1000);
+    } 
   },
 
   methods: {
@@ -135,6 +147,23 @@ const vue = new Vue({
       .then(({ data }) => {
         this.notes = data
       })
+    },
+
+    feedBrain(noteId) {
+      //Add "likes" to notes
+       axios.post(`https://notes.andrewrhyand.com/wp-json/bb-notes/v1/notes/feedbrain/${noteId}`, null,
+       {
+         headers: {
+           Authorization: `Bearer ${this.user.token}`
+         }
+       })
+       .then(({ data: { data } }) => {
+          const currentNote = this.notes.filter(note => {
+            return note.id === noteId
+          })
+
+          currentNote[0].brain_count = data.brain_count
+       })
     },
   } 
 })
