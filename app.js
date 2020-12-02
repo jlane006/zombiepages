@@ -18,14 +18,6 @@ const vue = new Vue({
     this.getUser()
   },
 
-  // updated() {
-  //   window.scrollTo({
-  //     left: 0,
-  //     top: document.body.scrollHeight,
-  //     behavior: 'smooth'
-  //   })
-  // },
-
   watch: {
     notes() {
       setTimeout(() => {
@@ -104,7 +96,6 @@ const vue = new Vue({
           localStorage.removeItem('user')
         })
       }
-
 
     },
 
