@@ -115,11 +115,6 @@ const vue = new Vue({
       .then(({ data }) => {
         this.fetchNotes()
         this.newNote = ''
-        // window.scrollTo({
-        //   left: 0,
-        //   top: document.body.scrollHeight,
-        //   behavior: 'smooth'
-        // })
       })
       .catch((error) => {
         // Handle the error

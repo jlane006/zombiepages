@@ -73,22 +73,10 @@
               </div>
             </main>
 
-            <!--<div id="paper">
-              <div id="pattern" class="pb-20">
-                <div class="content" v-for="note in notes" :key="note.id">
-                  <img class="avatar" :src="`${note.user.name}.svg`" alt="avatar" />
-                  <div class="text" :class="[{staticClass: true}, note.user.name]">
-                    {{ note.user.name }} - {{ note.location.name }} - {{ note.timestamp }}
-                    <br/>{{ note.content }}
-                  </div>
-                </div>
-              </div>
-            </div>-->
-
-            <div class="h-auto bg-gradient-to-t from-red-900 to-red-600 w-full fixed bottom-0">
+            <div class="h-auto bg-gray-800 w-full fixed bottom-0">
               <div class="w-3/4 m-auto">
                 <form v-on:submit.prevent="saveNote">
-                  <input placeholder="Type new note..." style="width: 100%; margin: 0.75rem; padding-top: 5px; padding-right: 15px; padding-left: 15px; border: 3px solid black; border-radius: 2rem 2rem 0rem 2rem; resize: none; box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" v-model.lazy="newNote" />
+                  <input placeholder="Type new note..." style="width: 100%; margin: 0.75rem; padding-top: 5px; padding-right: 15px; padding-left: 15px; border: 3px solid black; border-radius: 2rem; resize: none; box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" v-model.lazy="newNote" />
                 </form>
               </div>
             </div>
