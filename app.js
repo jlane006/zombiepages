@@ -10,7 +10,8 @@ const vue = new Vue({
       lng: -302.3534246,
       user: null,
       username: '',
-      password: ''
+      password: '',
+      showDropdownForNoteId: 0
     }
   },  
   
@@ -150,6 +151,14 @@ const vue = new Vue({
 
           currentNote[0].brain_count = data.brain_count
        })
+    },
+
+    toggleDropdown(noteId) {
+      if (this.showDropdownForNoteId === noteId) {
+        this.showDropdownForNoteId = 0
+      } else {
+        this.showDropdownForNoteId = noteId
+      }
     },
   } 
 })

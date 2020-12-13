@@ -47,7 +47,7 @@
 
             <main class="bg-gray-800 flex items-center justify-center min-h-screen pb-12">
               <div class="text-white w-full max-w-md">
-                <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id">
+                <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded-lg shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id">
                   <header>
                     <div class="flex items-baseline leading-none place-content-center space-x-2 w-full">
                       <h3>{{ note.user.name }}</h3>
@@ -55,12 +55,12 @@
                     </div>
                   </header>
                   <div class="flex relative" style="min-height: 3rem;">
-                    <img class="absolute bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded transform -translate-x-1/2 -translate-y-1/2 w-16" :src="user.avatar" alt="avatar" />
+                    <img class="absolute bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded-md transform -translate-x-1/2 -translate-y-1/2 w-16" :src="note.user.avatar" :alt="`${note.user.name} avatar`" />
                     <p class="ml-12">{{ note.content }}</p>
                   </div>
                   <div class="border-t-4 border-gray-400">
                     <div class="flex items-center justify-between mt-2">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                      <svg @click="toggleDropdown(note.id)" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                       <div class="flex items-center space-x-2">
                         <span class="text-sm">{{ note.brain_count }}</span>
                         <button @click="feedBrain(note.id)">
@@ -68,7 +68,7 @@
                         </button>
                       </div>
                     </div>
-                    <div class="text-sm">
+                    <div class="text-sm" v-show="note.id === showDropdownForNoteId">
                       <p>Location: {{ note.location.name }}</p>
                       <p>Temp: {{ note.location.temp }}</p>
                     </div>
@@ -80,7 +80,7 @@
             <div class="h-auto bg-gray-800 w-full fixed bottom-0">
               <div class="w-3/4 m-auto">
                 <form v-on:submit.prevent="saveNote">
-                  <input placeholder="Type new note..." style="width: 100%; margin: 0.75rem; padding-top: 5px; padding-right: 15px; padding-left: 15px; border: 3px solid black; border-radius: 2rem; resize: none; box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" v-model.lazy="newNote" />
+                  <input placeholder="Type new note..." style="width: 100%; margin: 0.75rem; padding-top: 5px; padding-right: 15px; padding-left: 15px; border: 3px solid #5b5f66; border-radius: 2rem; resize: none; box-shadow: inset 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" v-model.lazy="newNote" />
                 </form>
               </div>
             </div>
