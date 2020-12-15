@@ -12,10 +12,10 @@
 
         <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
-        <script src="app.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" 
         integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" 
         crossorigin="anonymous" defer></script>
+        <script src="app.js" defer></script>
     </head>
     <body class="bg-brown-100 h-screen expansion-alids-init">
      
@@ -47,7 +47,7 @@
 
             <main class="bg-gray-800 flex items-center justify-center min-h-screen pb-12">
               <div class="text-white w-full max-w-xs md:max-w-lg">
-                <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded-lg shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id">
+                <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded-lg shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id" :ref="`card-${note.id}`">
                   <header>
                     <div class="flex items-baseline leading-none place-content-center space-x-2 w-full">
                       <h3>{{ note.user.name }}</h3>
@@ -60,7 +60,7 @@
                   </div>
                   <div class="border-t-4 border-gray-400">
                     <div class="flex items-center justify-between mt-2">
-                      <svg @click="toggleDropdown(note.id)" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                      <svg class="gsap-target cursor-pointer w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                       <div class="flex items-center space-x-2">
                         <span class="text-sm">{{ note.brain_count }}</span>
                         <button @click="feedBrain(note.id)">
@@ -68,7 +68,7 @@
                         </button>
                       </div>
                     </div>
-                    <div class="text-sm" v-show="note.id === showDropdownForNoteId">
+                    <div class="gsap-dropdown h-0 overflow-hidden text-sm">
                       <p>Location: {{ note.location.name }}</p>
                       <p>Temp: {{ note.location.temp }}</p>
                     </div>
