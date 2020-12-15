@@ -21,13 +21,13 @@ const vue = new Vue({
 
   watch: {
     notes() {
-      setTimeout(() => {
+      this.$nextTick(() => {
         window.scrollTo({
           left: 0,
           top: document.body.scrollHeight,
           behavior: 'smooth'
         })
-      }, 1000);
+      })
     } 
   },
 
