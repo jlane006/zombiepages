@@ -11,7 +11,6 @@ const vue = new Vue({
       user: null,
       username: '',
       password: '',
-      showDropdownForNoteId: 0
     }
   },  
   
@@ -21,13 +20,29 @@ const vue = new Vue({
 
   watch: {
     notes() {
-      setTimeout(() => {
+      this.$nextTick(() => {
         window.scrollTo({
           left: 0,
           top: document.body.scrollHeight,
           behavior: 'smooth'
         })
-      }, 1000);
+      })
+      
+      // Handle GSAP dropdown animation
+      this.$nextTick(() => {
+        this.notes.forEach(note => {
+          const el = this.$refs[`card-${note.id}`][0]
+          const target = el.querySelector('.gsap-target')
+          const dropdown = el.querySelector('.gsap-dropdown')
+
+          const tl = gsap.timeline({ reversed: true })
+            .to(dropdown, { height: 'auto', duration: 0.5 })
+    
+          target.addEventListener('click', () => {
+            tl.reversed() ? tl.play() : tl.reverse();
+          });
+        })
+      })
     } 
   },
 
@@ -151,14 +166,6 @@ const vue = new Vue({
 
           currentNote[0].brain_count = data.brain_count
        })
-    },
-
-    toggleDropdown(noteId) {
-      if (this.showDropdownForNoteId === noteId) {
-        this.showDropdownForNoteId = 0
-      } else {
-        this.showDropdownForNoteId = noteId
-      }
     },
   } 
 })
