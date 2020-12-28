@@ -167,5 +167,14 @@ const vue = new Vue({
           currentNote[0].brain_count = data.brain_count
        })
     },
+
+    timeline(noteIndex) {
+      if (!noteIndex) return
+
+      let year1 = new Date(this.notes[noteIndex -1].raw_timestamp.date).getFullYear()
+      let year2 = new Date(this.notes[noteIndex].raw_timestamp.date).getFullYear()
+
+      return year1 !== year2 ? year2 : null
+    }
   } 
 })

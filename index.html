@@ -47,33 +47,38 @@
 
             <main class="bg-gray-800 flex items-center justify-center min-h-screen pb-12">
               <div class="text-white w-full max-w-xs md:max-w-lg">
-                <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded-lg shadow-lg border-4 border-gray-700 space-y-4" v-for="note in notes" :key="note.id" :ref="`card-${note.id}`">
-                  <header>
-                    <div class="flex items-baseline leading-none place-content-center space-x-2 w-full">
-                      <h3>{{ note.user.name }}</h3>
-                      <span class="tracking-tight text-gray-200 text-xs">{{ note.timestamp }}</span>
+                <div v-for="(note, index) in notes" :key="note.id">
+
+                  <div class="mt-8 text-3xl text-center" v-if="timeline(index)">{{ timeline(index) }}</div>
+
+                  <article class="my-4 bg-gray-500 font-mono pb-2 pt-4 px-4 rounded-lg shadow-lg border-4 border-gray-700 space-y-4" :ref="`card-${note.id}`">
+                    <header>
+                      <div class="flex items-baseline leading-none place-content-center space-x-2 w-full">
+                        <h3>{{ note.user.name }}</h3>
+                        <span class="tracking-tight text-gray-200 text-xs">{{ note.timestamp }}</span>
+                      </div>
+                    </header>
+                    <div class="flex relative" style="min-height: 3rem;">
+                      <img class="absolute bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded-md transform -translate-x-1/2 -translate-y-1/2 w-16" :src="note.user.avatar" :alt="`${note.user.name} avatar`" />
+                      <p class="ml-12">{{ note.content }}</p>
                     </div>
-                  </header>
-                  <div class="flex relative" style="min-height: 3rem;">
-                    <img class="absolute bg-yellow-400 h-auto p-1 border-2 border-yellow-700 rounded-md transform -translate-x-1/2 -translate-y-1/2 w-16" :src="note.user.avatar" :alt="`${note.user.name} avatar`" />
-                    <p class="ml-12">{{ note.content }}</p>
-                  </div>
-                  <div class="border-t-4 border-gray-400">
-                    <div class="flex items-center justify-between mt-2">
-                      <svg class="gsap-target cursor-pointer w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-                      <div class="flex items-center space-x-2">
-                        <span class="text-sm">{{ note.brain_count }}</span>
-                        <button @click="feedBrain(note.id)">
-                          <img class="w-5 h-5" src="brains.svg" alt="brains">
-                        </button>
+                    <div class="border-t-4 border-gray-400">
+                      <div class="flex items-center justify-between mt-2">
+                        <svg class="gsap-target cursor-pointer w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                        <div class="flex items-center space-x-2">
+                          <span class="text-sm">{{ note.brain_count }}</span>
+                          <button @click="feedBrain(note.id)">
+                            <img class="w-5 h-5" src="brains.svg" alt="brains">
+                          </button>
+                        </div>
+                      </div>
+                      <div class="gsap-dropdown h-0 overflow-hidden text-sm">
+                        <p>Location: {{ note.location.name }}</p>
+                        <p>Temp: {{ note.location.temp }}</p>
                       </div>
                     </div>
-                    <div class="gsap-dropdown h-0 overflow-hidden text-sm">
-                      <p>Location: {{ note.location.name }}</p>
-                      <p>Temp: {{ note.location.temp }}</p>
-                    </div>
-                  </div>
-                </article>
+                  </article>
+                </div>
               </div>
             </main>
 
